@@ -67,6 +67,6 @@ resource "aws_route_table_association" "private_rtba" {
     for_each = {
       for k,s in var.subnets : k => s if s.public == false
     }
-    subnet_id = aws_subnet.test_subnet.id
+    subnet_id = aws_subnet.test_subnet[each.key].id
   
 }
