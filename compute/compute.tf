@@ -18,7 +18,7 @@ resource "aws_security_group" "test_sg" {
         cidr_blocks = [ "0.0.0.0/0" ]
         from_port = 80
         to_port = 80
-        protocol = "http"
+        protocol = "tcp"
     }
 
     egress {
