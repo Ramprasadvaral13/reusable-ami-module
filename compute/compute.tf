@@ -58,7 +58,7 @@ resource "aws_autoscaling_group" "test_Asg" {
     wait_for_capacity_timeout = "0"
 
     launch_template {
-      version = "$LATEST"
+      version = "$Latest"
       id = aws_launch_template.test_lt.id
     }
 
