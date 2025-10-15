@@ -1,3 +1,7 @@
+data "aws_ssm_parameter" "golden_ami" {
+  name = "/golden-ami/latest"
+}
+
 resource "aws_security_group" "test_sg" {
     name = "${var.name_prefix}-asg-sg"
     description = "test-sg"
@@ -29,7 +33,7 @@ resource "aws_security_group" "test_sg" {
 
 resource "aws_launch_template" "test_lt" {
    name_prefix = "${var.name_prefix}-lt"
-   image_id = var.image_id
+   image_id = data.aws_ssm_parameter.golden_ami.value
    instance_type = var.instance_type
    security_group_names = [ aws_security_group.test_sg.id ]
 
