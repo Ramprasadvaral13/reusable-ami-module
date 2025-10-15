@@ -35,7 +35,7 @@ resource "aws_launch_template" "test_lt" {
    name_prefix = "${var.name_prefix}-lt"
    image_id = data.aws_ssm_parameter.golden_ami.value
    instance_type = var.instance_type
-   security_group_names = [ aws_security_group.test_sg.id ]
+   vpc_security_group_ids  = [ aws_security_group.test_sg.id ]
 
    block_device_mappings {
      device_name = "/dev/xvda"
