@@ -55,7 +55,7 @@ resource "aws_route_table" "private_test_route" {
 
 resource "aws_route_table_association" "public_rtba" {
     for_each = {
-        for k,s in var.subnets : k => s if s.public == true
+        for k,s in var.subnets : k=>s if s.public == true
     }
     subnet_id = aws_subnet.test_subnet[each.key].id
     route_table_id = aws_route_table.public_test_route.id
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "public_rtba" {
 
 resource "aws_route_table_association" "private_rtba" {
     for_each = {
-      for k,s in var.subnets : k => s if s.public == false
+      for k,s in var.subnets : k=>s if s.public == false
     }
     subnet_id = aws_subnet.test_subnet[each.key].id
     route_table_id = aws_route_table.private_test_route.id
