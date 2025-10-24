@@ -36,6 +36,7 @@ resource "aws_launch_template" "test_lt" {
    image_id = data.aws_ssm_parameter.golden_ami.value
    instance_type = var.instance_type
    vpc_security_group_ids  = [ aws_security_group.test_sg.id ]
+   key_name      = var.key_pair_name
    
 
    block_device_mappings {
