@@ -2,6 +2,12 @@ data "aws_ssm_parameter" "golden_ami" {
   name = "/golden-ami/latest"
 }
 
+# Get existing instance profile
+data "aws_iam_instance_profile" "existing_profile" {
+  name = "AdminSSMRole"   # <-- Replace with your existing instance profile name
+}
+
+
 resource "aws_security_group" "test_sg" {
     name = "${var.name_prefix}-asg-sg"
     description = "test-sg"
@@ -37,6 +43,10 @@ resource "aws_launch_template" "test_lt" {
    instance_type = var.instance_type
    vpc_security_group_ids  = [ aws_security_group.test_sg.id ]
    key_name      = var.key_pair_name
+
+   iam_instance_profile {
+    name = data.aws_iam_instance_profile.existing_profile.name
+  }
 
    block_device_mappings {
      device_name = "/dev/xvda"
