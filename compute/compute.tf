@@ -69,5 +69,11 @@ resource "aws_autoscaling_group" "test_Asg" {
       value = "${var.name_prefix}-instance"
       propagate_at_launch = true
     }
+
+   tag {
+    key                 = "env"
+    value               = "dev"
+    propagate_at_launch = true
+  }
   
 }
