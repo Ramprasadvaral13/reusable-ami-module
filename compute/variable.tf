@@ -34,3 +34,16 @@ variable "volume_size" {
     type = number
   
 }
+
+variable "key_name" {
+  type        = string
+  description = "EC2 key pair to use for instance"
+  default     = "cloudtechdev1"
+}
+
+variable "instance_profile_name" {
+  type        = string
+  description = "Name of the IAM instance profile attached to your role"
+  default     = "AdminSSMRole"
+}
+
